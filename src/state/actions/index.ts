@@ -1,12 +1,14 @@
+import { ActionType } from "../action-types";
+
 interface withdrawAction {
-  type: "withdraw";
+  type: ActionType.WITHDRAW;
   payload: number;
 }
 interface depositAction {
-  type: "deposit";
+  type: ActionType.DEPOSIT;
   payload: number;
 }
 interface bankruptAction {
-  type: "bankrupt";
+  type: ActionType.BANKRUPT;
 }
 export type Action = withdrawAction | depositAction | bankruptAction;
