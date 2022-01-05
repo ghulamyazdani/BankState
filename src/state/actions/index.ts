@@ -4,10 +4,10 @@ interface withdrawAction {
   type: ActionType.WITHDRAW;
   payload: number;
 }
-interface depositAction {
+type depositAction = {
   type: ActionType.DEPOSIT;
   payload: number;
-}
+};
 interface bankruptAction {
   type: ActionType.BANKRUPT;
 }
