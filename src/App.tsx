@@ -16,6 +16,7 @@ function App() {
   const amount = useSelector((state: State) => state.bank);
   return (
     <div className="App">
+      <h1>Banker app</h1>
       <h1>{amount}</h1>
       <form onSubmit={(e) => e.preventDefault()}>
         <input
