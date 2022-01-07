@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { actionCreators, State } from "./state";
 
 function App() {
+  const [input, setInput] = useState("");
+  console.log(input);
+
   const dispatch = useDispatch();
   const { depositMoney, withdrawMoney, bankrupt } = bindActionCreators(
     actionCreators,
@@ -14,9 +17,42 @@ function App() {
   return (
     <div className="App">
       <h1>{amount}</h1>
-      <button onClick={() => depositMoney(100)}>Deposit</button>
-      <button onClick={() => withdrawMoney(50)}>Withdraw</button>
-      <button onClick={() => bankrupt()}>Bankrupt</button>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <input
+          type="number"
+          onChange={(e) => setInput(e.target.value)}
+          value={input}
+        />
+
+        <button
+          onClick={() => {
+            if (input) {
+              depositMoney(parseInt(input));
+              setInput("");
+            }
+          }}
+        >
+          Deposit
+        </button>
+        <button
+          onClick={() => {
+            if (input) {
+              withdrawMoney(parseInt(input));
+              setInput("");
+            }
+          }}
+        >
+          Withdraw
+        </button>
+        <button
+          onClick={() => {
+            bankrupt();
+            setInput("");
+          }}
+        >
+          Bankrupt
+        </button>
+      </form>
     </div>
   );
 }
