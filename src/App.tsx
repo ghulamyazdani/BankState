@@ -15,45 +15,47 @@ function App() {
   );
   const amount = useSelector((state: State) => state.bank);
   return (
-    <div className="App">
-      <h1>Banker app</h1>
-      <h1>{amount}</h1>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input
-          type="number"
-          onChange={(e) => setInput(e.target.value)}
-          value={input}
-        />
+    <div className="">
+      <div className="card rounded-none">
+        <h1 className="">Banker app</h1>
+        <h1>{amount}</h1>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="number"
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
+          />
 
-        <button
-          onClick={() => {
-            if (input) {
-              depositMoney(parseInt(input));
+          <button
+            onClick={() => {
+              if (input) {
+                depositMoney(parseInt(input));
+                setInput("");
+              }
+            }}
+          >
+            Deposit
+          </button>
+          <button
+            onClick={() => {
+              if (input) {
+                withdrawMoney(parseInt(input));
+                setInput("");
+              }
+            }}
+          >
+            Withdraw
+          </button>
+          <button
+            onClick={() => {
+              bankrupt();
               setInput("");
-            }
-          }}
-        >
-          Deposit
-        </button>
-        <button
-          onClick={() => {
-            if (input) {
-              withdrawMoney(parseInt(input));
-              setInput("");
-            }
-          }}
-        >
-          Withdraw
-        </button>
-        <button
-          onClick={() => {
-            bankrupt();
-            setInput("");
-          }}
-        >
-          Bankrupt
-        </button>
-      </form>
+            }}
+          >
+            Bankrupt
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
