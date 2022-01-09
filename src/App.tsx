@@ -15,45 +15,49 @@ function App() {
   );
   const amount = useSelector((state: State) => state.bank);
   return (
-    <div className="">
-      <div className="card rounded-none">
-        <h1 className="">Banker app</h1>
+    <div className="h-screen flex justify-center items-center bg-slate-100 ">
+      <div className="w-56 h-56 flex flex-col justify-center items-center bg-white mt-30 p-40 shadow-lg rounded-lg">
+        <h1 className="font-bold text-2xl text-center">Banker app</h1>
         <h1>{amount}</h1>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={(e) => e.preventDefault()} className="flex flex-col">
           <input
             type="number"
             onChange={(e) => setInput(e.target.value)}
             value={input}
           />
-
-          <button
-            onClick={() => {
-              if (input) {
-                depositMoney(parseInt(input));
+          <div className="w-full flex justify-between mt-3">
+            <button
+              className="bg-blue-500 text-white py-2 px-3 rounded-md mx-auto"
+              onClick={() => {
+                if (input) {
+                  depositMoney(parseInt(input));
+                  setInput("");
+                }
+              }}
+            >
+              Deposit
+            </button>
+            <button
+              className="bg-blue-500 text-white py-2 px-3 rounded-md mx-auto ml-2"
+              onClick={() => {
+                if (input) {
+                  withdrawMoney(parseInt(input));
+                  setInput("");
+                }
+              }}
+            >
+              Withdraw
+            </button>
+            <button
+              className="bg-blue-500 text-white py-2 px-3 rounded-md mx-auto ml-2"
+              onClick={() => {
+                bankrupt();
                 setInput("");
-              }
-            }}
-          >
-            Deposit
-          </button>
-          <button
-            onClick={() => {
-              if (input) {
-                withdrawMoney(parseInt(input));
-                setInput("");
-              }
-            }}
-          >
-            Withdraw
-          </button>
-          <button
-            onClick={() => {
-              bankrupt();
-              setInput("");
-            }}
-          >
-            Bankrupt
-          </button>
+              }}
+            >
+              Bankrupt
+            </button>
+          </div>
         </form>
       </div>
     </div>
